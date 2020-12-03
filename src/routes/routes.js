@@ -15,7 +15,8 @@ var appRouter = function (app) {
         res.status(200).send(redirectUrl)
     })
     app.get("/pay", async function(req, res) {
-        const cloudAccount = HandCashCloudAccount.fromAuthToken(req.auth, ENV);
+        const token = req.query.auth
+        const cloudAccount = HandCashCloudAccount.fromAuthToken(token, ENV)
         const paymentParameters = {
         description: 'mymovies api',
         appAction: 'play',
@@ -23,8 +24,9 @@ var appRouter = function (app) {
             { to: 'fullcycle', currency: 'USD', amount: 0.01 },
         ]
         }
-        const paymentResult = await cloudAccount.wallet.pay(paymentParameters);
-        console.log(paymentResult)
+        // res.status(200).send(paymentParameters)
+        const paymentResult = await cloudAccount.wallet.pay(paymentParameters)
+        // console.log(paymentResult)
         res.status(200).send(paymentResult)
     })
 }
