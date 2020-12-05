@@ -21,7 +21,7 @@ var appRouter = function (app) {
         description: 'mymovies api',
         appAction: 'play',
         payments: [
-            { to: 'fullcycle', currency: 'USD', amount: 0.01 },
+            { to: 'fullcycle', currencyCode: 'USD', amount: 0.01 },
         ]
         }
         // res.status(200).send(paymentParameters)
